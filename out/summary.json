@@ -21,13 +21,34 @@
     "within_five_pct": 86.6
   },
   "module_distribution": {
-    "6-8": 54,
-    "1": 794,
-    "2": 763,
-    "3": 514,
-    "4": 350,
-    "5": 209,
-    "9+": 135
+    "6-8": {
+      "count": 54,
+      "pct": 1.8
+    },
+    "1": {
+      "count": 794,
+      "pct": 26.1
+    },
+    "2": {
+      "count": 763,
+      "pct": 25.1
+    },
+    "3": {
+      "count": 514,
+      "pct": 16.9
+    },
+    "4": {
+      "count": 350,
+      "pct": 11.5
+    },
+    "5": {
+      "count": 209,
+      "pct": 6.9
+    },
+    "9+": {
+      "count": 135,
+      "pct": 4.4
+    }
   },
   "daily": {
     "days": [
@@ -256,5 +277,33 @@
       "module": "internal/redact",
       "count": 100
     }
-  ]
+  ],
+  "phases": {
+    "P1_restructure": {
+      "range": "2026-10-11 ~ 10-22",
+      "days": 12,
+      "daily_mean": 10.8,
+      "n": 129,
+      "files_median": 27,
+      "mods_median": 7,
+      "files_mean": 50.55,
+      "mods_mean": 7.64
+    },
+    "P2_stable": {
+      "range": "2026-10-23 ~ 11-18",
+      "days": 27,
+      "daily_mean": 107.7,
+      "n": 2909,
+      "files_median": 7,
+      "mods_median": 2,
+      "files_mean": 10.73,
+      "mods_mean": 3.01
+    }
+  },
+  "commits": {
+    "main_branch_total": 8625,
+    "within_releases": 6981,
+    "as_of": "2026-11-18",
+    "note": "main 分支全部提交 8,625；其中 6,981 落在这 3,038 个 release 的相邻 compare 之间，差额来自首个 release 之前的历史。"
+  }
 }
