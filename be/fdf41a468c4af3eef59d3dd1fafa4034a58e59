@@ -1,0 +1,19 @@
+scripts/poster.html
+  s_d7951b276103ee::t_5417ba29bc7e38 193,291-294
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "befdf41a468c4af3eef59d3dd1fafa4034a58e59",
+  "prompts": {},
+  "sessions": {
+    "s_d7951b276103ee": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a1e79d-a501-7537-953c-345fc8bb55a1",
+        "model": "deepseek-v4.1-flash"
+      },
+      "human_author": "Lan Zhu <zhulan@changtianyun.com>"
+    }
+  }
+}
