@@ -23,6 +23,8 @@ magpie 自述「code is written, reviewed, merged and released by agents」—�
 - [`images/04-change-size.png`](images/04-change-size.png) —— 改动规模分布
 - [`images/05-five-scales.png`](images/05-five-scales.png) —— **五个尺度的改动大小**（每天 release 数 / 每次 release 的文件与模块 / 每个 commit 的文件与模块）
 
+另有整页长图 [`images/06-poster-long.png`](images/06-poster-long.png)：上面六段合成一张，适合一次发完。
+
 ## 结论
 
 **它先慢下来，然后变得又快又小。**
