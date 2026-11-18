@@ -224,9 +224,9 @@ function frame(id,opt){
     const t=E("text",{x:m.l-9,y:y+4,"text-anchor":"end",class:"tick"});
     t.textContent=opt.fmtY?opt.fmtY(v):v;svg.appendChild(t);
   });
-  for(let i=0;i<N;i+=5){
+  for(let i=0;i<N;i+=7){
     const t=E("text",{x:m.l+((i+0.5)/N)*iw,y:H-9,"text-anchor":"middle",class:"tick"});
-    t.textContent=DATA.days[i];svg.appendChild(t);
+    t.textContent=DATA.days[i].slice(5);svg.appendChild(t);
   }
   return{svg,m,iw,ih,yOf,W,H,xOf:i=>m.l+((i+0.5)/N)*iw,bw:iw/N};
 }
