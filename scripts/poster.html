@@ -190,7 +190,7 @@
   </div>
   <div class="foot">
     <b>数据来源：</b>github.com/yetone/magpie 主仓库全部 3,039 个 release（2026-10-11 → 11-18）；
-    对 3,038 个逐个调用 <code>/compare/prev...tag</code> 取得真实文件清单（v0.1.1194 为首个版本，无前置可比较）。<br>
+    对 3,038 个逐个调用 <code>/compare/prev...tag</code> 取得真实文件清单（v0.1.1194 为首个版本无前置可比较；v0.1.1863 / 1944 / 3986 的 tag 指向更旧提交，compare 返回 behind，计为 0 改动）。<br>
     <b>commit 数：</b>main 分支累计 8,625 个（截至 2026-11-18），其中 6,981 个落在这批 release 之间。<br>
     <b>局限：</b>时间关联不等于因果。10-23 的形态收敛只能给出时间吻合，无法排除混杂因素。
   </div>
@@ -288,10 +288,10 @@ function frame(id,opt){
 (function(){
   const svg=document.getElementById("modbars");
   const W=960,H=350,m={l:170,r:64,t:8,b:8},iw=W-m.l-m.r;
-  const rows=[["docs",1519],["internal/gui",1511],["internal/gateway",1145],
-    ["internal/provider",976],["internal/agent",514],["internal/cli",367],
-    ["site",359],["internal/sessions",268],["internal/usage",247],["internal/library",244]];
-  const ymax=1519,rh=(H-m.t-m.b)/rows.length;
+  const rows=[["docs",1645],["internal/gui",1622],["internal/gateway",1231],
+    ["internal/provider",1053],["internal/agent",546],["internal/cli",396],
+    ["site",392],["internal/sessions",279],["internal/usage",263],["internal/library",259]];
+  const ymax=1645,rh=(H-m.t-m.b)/rows.length;
   rows.forEach(([n,v],i)=>{
     const y=m.t+i*rh+rh*0.16,h=rh*0.66,w=(v/ymax)*iw;
     const isDoc=n==="docs";
