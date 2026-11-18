@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #0f172a;
+    background: #fff;
+  }
+  .shot { width: 1080px; background: #fff; padding: 64px 64px 56px; }
+
+  .hd { margin-bottom: 40px; }
+  .kicker {
+    display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .12em;
+    color: #94a3b8; margin-bottom: 14px;
+  }
+  h1 { font-size: 44px; line-height: 1.22; font-weight: 750; letter-spacing: -.025em; }
+  .sub { margin-top: 14px; font-size: 16px; line-height: 1.6; color: #64748b; }
+  .sub b { color: #0f172a; font-weight: 650; }
+
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    text-align: left; font-size: 13px; font-weight: 650; color: #94a3b8;
+    padding: 0 16px 14px 0; border-bottom: 2px solid #0f172a; letter-spacing: .02em;
+  }
+  th.num, td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td {
+    padding: 18px 16px 18px 0; border-bottom: 1px solid #eef2f6;
+    font-size: 17px; font-variant-numeric: tabular-nums;
+  }
+  tr:last-child td { border-bottom: none; }
+  td.num { font-weight: 650; }
+  .muted { color: #94a3b8; }
+  .hl-row td { background: #fffbeb; }
+  .hl-row td:first-child { border-left: 3px solid #f59e0b; padding-left: 13px; }
+  .big { font-size: 21px; font-weight: 780; color: #b45309; }
+
+  .tag {
+    display: inline-block; font-size: 12px; font-weight: 700; padding: 3px 8px;
+    border-radius: 5px; vertical-align: 2px; margin-left: 8px;
+  }
+  .tag.amber { background: #fef3c7; color: #b45309; }
+  .tag.green { background: #d1fae5; color: #047857; }
+
+  /* bar rows for module chart */
+  .bar-cell { width: 100%; }
+  .btrack { height: 22px; background: #f1f5f9; border-radius: 4px; position: relative; }
+  .bfill { height: 100%; border-radius: 4px; background: #bfdbfe; }
+  .bfill.docs { background: #34d399; }
+
+  .note {
+    margin-top: 34px; padding: 20px 24px; background: #f8fafc;
+    border-radius: 12px; font-size: 15.5px; line-height: 1.75; color: #334155;
+  }
+  .note b { color: #0f172a; font-weight: 700; }
+
+  .foot { margin-top: 26px; font-size: 12.5px; line-height: 1.7; color: #b0b8c4; }
+</style>
+</head>
+<body>
+
+<!-- ================= 表 1：三阶段 ================= -->
+<div class="shot" id="t1">
+  <div class="hd">
+    <div class="kicker">TABLE 1 / 3</div>
+    <h1>同一个项目，三种形态</h1>
+    <div class="sub">按实测曲线的两个转折点切开，各阶段的发布节奏与改动规模完全不同</div>
+  </div>
+
+  <table>
+    <tr>
+      <th>阶段</th><th class="num">天数</th><th class="num">release</th>
+      <th class="num">文件/次</th><th class="num">模块/次</th><th class="num">模块均值</th>
+    </tr>
+    <tr>
+      <td>P1 堆功能<br><span class="muted" style="font-size:14px">09-23 → 10-05</span></td>
+      <td class="num">13</td><td class="num">1,048</td>
+      <td class="num">7</td><td class="num">2</td><td class="num">2.83</td>
+    </tr>
+    <tr class="hl-row">
+      <td><b>P2 规范建设</b><span class="tag amber">转折</span><br><span class="muted" style="font-size:14px">10-06 → 10-22</span></td>
+      <td class="num">17</td><td class="num">249</td>
+      <td class="num big">29</td><td class="num big">7</td><td class="num big">7.24</td>
+    </tr>
+    <tr>
+      <td>P3 稳定高频<br><span class="muted" style="font-size:14px">10-23 → 11-17</span></td>
+      <td class="num">26</td><td class="num">2,861</td>
+      <td class="num">6</td><td class="num">2</td><td class="num">2.62</td>
+    </tr>
+  </table>
+
+  <div class="note">
+    中间那 17 天，发布量掉到每天 10 来个，单次改动反而是 <b>29 个文件、7 个模块</b>。
+    之后 26 天发布了 <b>2,861 次</b>，日均 110 次，是中间那 17 天日均的 7.5 倍，而单次只动 6 个文件、2 个模块。
+  </div>
+
+  <div class="foot">
+    数据：magpie-releases 4,162 个 release + magpie 仓库 compare API 逐个取 diff（4,158 个有数据，4 个无共同祖先已排除）
+  </div>
+</div>
+
+<!-- ================= 表 2：模块频率 ================= -->
+<div class="shot" id="t2">
+  <div class="hd">
+    <div class="kicker">TABLE 2 / 3</div>
+    <h1>改动落在哪些模块</h1>
+    <div class="sub">4,158 个 release 中，每个模块被改到的次数</div>
+  </div>
+
+  <table id="modtable">
+    <tr>
+      <th style="width:210px">模块</th>
+      <th class="bar-cell">占全部 release 的比例</th>
+      <th class="num" style="width:100px">次数</th>
+    </tr>
+  </table>
+
+  <div class="note">
+    <b>docs 排第 3</b>，1,625 次，比核心的 provider（1,487）还多。
+    这个项目要求改行为时在同一个 commit 里改掉对应文档，
+    所以文档不是在事后补，而是跟着代码一起动。
+  </div>
+
+  <div class="foot">
+    模块划分：internal/ 下一级子包，加 docs / site / plugins 等顶层目录
+  </div>
+</div>
+
+<!-- ================= 表 3：改动规模分布 ================= -->
+<div class="shot" id="t3">
+  <div class="hd">
+    <div class="kicker">TABLE 3 / 3</div>
+    <h1>每次改动有多大</h1>
+    <div class="sub">4,158 个 release 按「横跨几个模块」和「包含几个 commit」分布</div>
+  </div>
+
+  <table>
+    <tr>
+      <th>横跨模块数</th><th class="num">release 数</th><th class="num">占比</th>
+      <th style="width:340px">分布</th>
+    </tr>
+    <tr><td>1 个</td><td class="num">1,281</td><td class="num">30.8%</td>
+      <td><div class="btrack"><div class="bfill" style="width:100%"></div></div></td></tr>
+    <tr><td>2 个</td><td class="num">1,021</td><td class="num">24.6%</td>
+      <td><div class="btrack"><div class="bfill" style="width:79.7%"></div></div></td></tr>
+    <tr><td>3 个</td><td class="num">675</td><td class="num">16.2%</td>
+      <td><div class="btrack"><div class="bfill" style="width:52.7%"></div></div></td></tr>
+    <tr><td>4 个</td><td class="num">435</td><td class="num">10.5%</td>
+      <td><div class="btrack"><div class="bfill" style="width:34%"></div></div></td></tr>
+    <tr><td>5 个</td><td class="num">268</td><td class="num">6.4%</td>
+      <td><div class="btrack"><div class="bfill" style="width:20.9%"></div></div></td></tr>
+    <tr><td>6–8 个</td><td class="num">329</td><td class="num">7.9%</td>
+      <td><div class="btrack"><div class="bfill" style="width:25.7%"></div></div></td></tr>
+    <tr><td>9 个以上</td><td class="num">143</td><td class="num">3.4%</td>
+      <td><div class="btrack"><div class="bfill" style="width:11.2%"></div></div></td></tr>
+  </table>
+
+  <table style="margin-top:34px">
+    <tr>
+      <th>提交形态</th><th class="num">数量</th><th class="num">占比</th><th></th>
+    </tr>
+    <tr>
+      <td>只含 1 个 commit 的 release</td>
+      <td class="num">2,836</td><td class="num">68.2%</td>
+      <td style="width:340px"><div class="btrack"><div class="bfill" style="width:100%;background:#c4b5fd"></div></div></td>
+    </tr>
+    <tr>
+      <td>只碰 1~2 个模块的 release</td>
+      <td class="num">2,302</td><td class="num">55.4%</td>
+      <td><div class="btrack"><div class="bfill" style="width:81.2%;background:#c4b5fd"></div></div></td>
+    </tr>
+  </table>
+
+  <div class="note">
+    规范里同时写着「一次提交只做一件事」和「修复要覆盖每一个同类位置」。
+    前者把范围压小，后者防止只修报告里那一个 case。
+    结果是：<b>超过一半的改动只碰 1~2 个模块</b>，88.5% 在 5 个以内。
+  </div>
+
+  <div class="foot">
+    横跨模块数 = 该 release 的 diff 涉及的不同一级模块个数
+  </div>
+</div>
+
+<script>
+// 表 2 用真实数据渲染
+const MODS = [
+  ["internal/gui", 2272, 54.6], ["internal/gateway", 1628, 39.2],
+  ["docs", 1625, 39.1, true], ["internal/provider", 1487, 35.8],
+  ["internal/agent", 779, 18.7], ["(root)", 537, 12.9],
+  ["site", 442, 10.6], ["internal/cli", 329, 7.9],
+  ["internal/library", 323, 7.8], ["internal/usage", 310, 7.5],
+];
+const MAX = 54.6;
+const tb = document.getElementById("modtable");
+MODS.forEach(([name, count, pct, isDocs]) => {
+  const tr = document.createElement("tr");
+  const w = (pct / MAX) * 100;
+  tr.innerHTML = `
+    <td style="${isDocs ? "font-weight:750;color:#059669" : ""}">${name}</td>
+    <td class="bar-cell"><div class="btrack"><div class="bfill ${isDocs ? "docs" : ""}" style="width:${w.toFixed(1)}%"></div></div></td>
+    <td class="num" style="${isDocs ? "font-weight:750;color:#059669" : ""}">${count.toLocaleString()}</td>`;
+  tb.appendChild(tr);
+});
+</script>
+</body>
+</html>
