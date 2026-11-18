@@ -1,0 +1,63 @@
+.gitignore
+  s_d7951b276103ee::t_107b85ece681fc 1-5
+DATA.md
+  s_b763d082a0923b::t_8d44240ca48bc9 1-114
+IMAGE-PROMPTS.md
+  s_b763d082a0923b::t_1c798fe710c0cf 1-170
+LICENSE
+  s_d7951b276103ee::t_53bb2320c850db 1-21
+README.md
+  s_d7951b276103ee::t_6befc24f60b04e 1-83
+out/daily.csv
+  s_b763d082a0923b::t_228caf845da392 1-57
+out/dataset.json
+  s_b763d082a0923b::t_31ef75c884b145 1
+out/modules.csv
+  s_b763d082a0923b::t_7bc9bf76025a24 1-108
+out/phases.csv
+  s_b763d082a0923b::t_b3e4986ecd38f0 1-4
+out/releases.csv
+  s_b763d082a0923b::t_2001768f9a1c87 1-4159
+out/summary.json
+  s_b763d082a0923b::t_2d43bf9f24a937 1-357
+scripts/build_pairs.py
+  s_b763d082a0923b::t_c38284020d3c51 1-28
+scripts/charts.js
+  s_b763d082a0923b::t_36ca388af4cfbc 1-117
+scripts/export.py
+  s_b763d082a0923b::t_4f3eeeeb80c7d2 1-237
+scripts/fetch-diffs.sh
+  s_b763d082a0923b::t_a7b50e10402769 1-37
+scripts/fetch-releases.sh
+  s_b763d082a0923b::t_a1864048e0bebe 1-31
+scripts/hero.html
+  s_d7951b276103ee::t_c6d2a7aab8e911 1-230
+scripts/parse_page.py
+  s_b763d082a0923b::t_bb0fae674caee9 1-15
+scripts/tables.html
+  s_d7951b276103ee::t_99f791a6e12d37 1-210
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "cd9b14f9b052ee29f18756b032444ddd225cd0aa",
+  "prompts": {},
+  "sessions": {
+    "s_b763d082a0923b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1e85e-a15c-75d2-8fdb-638cd6756abf",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Lan Zhu <zhulan@changtianyun.com>"
+    },
+    "s_d7951b276103ee": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a1e79d-a501-7537-953c-345fc8bb55a1",
+        "model": "deepseek-v4.1-flash"
+      },
+      "human_author": "Lan Zhu <zhulan@changtianyun.com>"
+    }
+  }
+}
