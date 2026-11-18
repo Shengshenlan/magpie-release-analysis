@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#eef1f5;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif;
+       -webkit-font-smoothing:antialiased;color:#0f172a;padding:40px}
+  .stack{display:flex;flex-direction:column;gap:36px;align-items:center}
+  .card{width:1080px;background:#fff;border-radius:22px;padding:52px 56px;box-shadow:0 1px 3px rgba(15,23,42,.08)}
+  .kicker{display:inline-block;background:#0f172a;color:#fff;font-size:13px;font-weight:700;
+          letter-spacing:.08em;padding:6px 12px;border-radius:6px;margin-bottom:20px}
+  h2{margin:0 0 10px;font-size:40px;line-height:1.2;letter-spacing:-.022em;font-weight:760}
+  .lead{margin:0 0 30px;font-size:17px;line-height:1.65;color:#64748b}
+  .lead b{color:#0f172a;font-weight:680}
+  svg{display:block;width:100%;overflow:visible}
+  .tick{font-size:12px;fill:#94a3b8;font-variant-numeric:tabular-nums}
+  .lbl{font-size:13px;fill:#475569;font-weight:650}
+  .band{fill:#fde68a;opacity:.38}
+  .gridline{stroke:#eef2f6;stroke-width:1}
+  .legend{display:flex;gap:22px;font-size:13px;color:#64748b;margin-bottom:14px;flex-wrap:wrap}
+  .legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+  .callout{display:flex;gap:16px;background:#f8fafc;border:1px solid #e8edf3;border-radius:14px;padding:20px 22px;margin-top:26px}
+  .callout .ico{flex:0 0 40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:20px}
+  .callout .tx{font-size:15.5px;line-height:1.72;color:#334155}
+  .callout .tx b{color:#0f172a;font-weight:700}
+  .ico.red{background:#fee2e2}.ico.amb{background:#fef3c7}.ico.grn{background:#d1fae5}
+  .ico.blu{background:#dbeafe}.ico.vio{background:#ede9fe}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:34px}
+  .kpi{background:#f8fafc;border:1px solid #e8edf3;border-radius:16px;padding:22px 18px}
+  .kpi .n{font-size:38px;font-weight:760;letter-spacing:-.035em;line-height:1}
+  .kpi .u{font-size:15px;font-weight:600;color:#94a3b8}
+  .kpi .l{font-size:13px;color:#64748b;margin-top:10px;line-height:1.45}
+  .kpi.hot{background:#0f172a;border-color:#0f172a}
+  .kpi.hot .n,.kpi.hot .u{color:#fff}.kpi.hot .l{color:#94a3b8}
+  .phases{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .ph{border:1px solid #e8edf3;border-radius:16px;padding:22px 20px}
+  .ph.hl{background:#fffbeb;border-color:#fcd34d}
+  .ph .pn{font-size:13px;font-weight:750;letter-spacing:.06em;color:#94a3b8;margin-bottom:6px}
+  .ph.hl .pn{color:#b45309}
+  .ph .pt{font-size:17px;font-weight:700;margin-bottom:14px}
+  .ph .row{display:flex;justify-content:space-between;font-size:13.5px;color:#64748b;
+           padding:6px 0;border-bottom:1px dashed #eef2f6}
+  .ph .row:last-child{border:none}
+  .ph .row b{color:#0f172a;font-variant-numeric:tabular-nums}
+  .ph.hl .row b.big{font-size:17px;color:#b45309}
+  table{width:100%;border-collapse:collapse;font-size:15px}
+  th{text-align:left;font-size:12.5px;color:#94a3b8;font-weight:650;padding:0 12px 12px 0;
+     border-bottom:2px solid #e8edf3}
+  td{padding:14px 12px 14px 0;border-bottom:1px solid #f4f7fa;font-variant-numeric:tabular-nums}
+  td.hi{font-weight:750}
+  .ratio{display:flex;flex-direction:column;gap:18px;margin-top:8px}
+  .rrow .rt{display:flex;justify-content:space-between;font-size:14.5px;margin-bottom:8px}
+  .rrow .rt .rv{font-weight:750;font-variant-numeric:tabular-nums}
+  .rtrack{height:26px;background:#f1f5f9;border-radius:7px;overflow:hidden}
+  .rfill{height:100%;border-radius:7px;display:grid;place-items:center;font-size:12px;
+         font-weight:700;color:#fff}
+  .foot{font-size:12.5px;color:#94a3b8;line-height:1.75;margin-top:26px;
+        border-top:1px solid #e8edf3;padding-top:18px}
+  .foot b{color:#64748b}
+</style>
+</head>
+<body>
+<div class="stack">
+
+<!-- ===== CARD 1 ===== -->
+<div class="card" id="c1">
+  <div class="kicker">DATA STUDY · 3,039 RELEASES</div>
+  <h2>一个纯 AI 写代码的项目<br>38 天发了 3039 个版本</h2>
+  <p class="lead">
+    <b>yetone/magpie</b> 自述「code is written, reviewed, merged and released by agents」。
+    这里拆的是 <b>2026-10-11 → 11-18</b> 期间 3,039 个 release 背后真实的代码改动。
+  </p>
+
+  <div class="kpis">
+    <div class="kpi"><div class="n">3,039</div><div class="l">38 天发布的版本数</div></div>
+    <div class="kpi hot"><div class="n">6</div><div class="l">每次改动的中位文件数</div></div>
+    <div class="kpi"><div class="n">2</div><div class="l">每次改动的中位模块数</div></div>
+    <div class="kpi"><div class="n">55<span class="u">%</span></div><div class="l">只含 1 个提交的发布</div></div>
+  </div>
+
+  <div class="legend">
+    <span><i style="background:#93c5fd"></i>每天 release 数</span>
+    <span><i style="background:#fcd34d"></i>10-11 → 10-22 每天只有 4~19 个</span>
+  </div>
+  <svg id="hero" viewBox="0 0 960 260"></svg>
+
+  <div class="callout">
+    <div class="ico amb">📉</div>
+    <div class="tx">前 12 天每天只有 <b>4~19</b> 个版本，10-23 之后一天跳到 <b>36、96、81、92</b>，
+    再往后稳定在每天 <b>60~200</b> 个。中间那段的低谷不是停摆——同期单次改动反而最大。</div>
+  </div>
+</div>
+
+<!-- ===== CARD 2 ===== -->
+<div class="card" id="c2">
+  <div class="kicker">THE SHARPEST LINE</div>
+  <h2>每次改动动了几个文件</h2>
+  <p class="lead">每日平均值，<b>对数刻度</b>。峰值与稳态差了整整一个数量级。</p>
+  <svg id="files" viewBox="0 0 960 300"></svg>
+  <div class="callout">
+    <div class="ico red">⚡</div>
+    <div class="tx">峰值 <b>112 个文件/次</b>（10-13），10-23 之后回到 <b>8 个上下</b>再没回头。
+    与此同时日发布量从十几个涨到一百多个。<br><b>改得越少，发得越多</b>。</div>
+  </div>
+</div>
+
+<!-- ===== CARD 3 ===== -->
+<div class="card" id="c3">
+  <div class="kicker">SCOPE, NOT VOLUME</div>
+  <h2>每次改动横跨几个模块</h2>
+  <p class="lead">「模块」= <code>internal/</code> 下的一级子包，加 docs / site / plugins 等顶层目录。</p>
+  <svg id="mods" viewBox="0 0 960 290"></svg>
+  <div class="ratio" style="margin-top:34px">
+    <div class="rrow"><div class="rt"><span>只碰 1 个模块</span><span class="rv">728 次 · 24.0%</span></div>
+      <div class="rtrack"><div class="rfill" style="width:24.1%;background:#7c3aed">728</div></div></div>
+    <div class="rrow"><div class="rt"><span>只碰 2 个模块</span><span class="rv">699 次 · 23.0%</span></div>
+      <div class="rtrack"><div class="rfill" style="width:23.0%;background:#a78bfa">699</div></div></div>
+    <div class="rrow"><div class="rt"><span>碰 3 个以上</span><span class="rv">1,607 次 · 52.9%</span></div>
+      <div class="rtrack"><div class="rfill" style="width:52.9%;background:#ddd6fe;color:#5b21b6">1,607</div></div></div>
+  </div>
+  <div class="callout">
+    <div class="ico vio">🎯</div>
+    <div class="tx">峰值 <b>12.6 个模块/次</b>（10-13）→ 稳定在 <b>2.3~2.9</b>。
+    改动从「横跨十几个包的大手术」变成「一两个包的定点修补」。
+    <b>47% 只碰 1~2 个模块</b>，79% 在 5 个以内。</div>
+  </div>
+</div>
+
+<!-- ===== CARD 4 ===== -->
+<div class="card" id="c4">
+  <div class="kicker">TWO PHASES</div>
+  <h2>两个阶段的形态完全不同</h2>
+  <p class="lead">按 10-23 这个转折点切开。<b>大手术集中做，小修小补日常做</b>，两者不混。</p>
+  <div class="phases">
+    <div class="ph hl">
+      <div class="pn">P1 · 10-11 → 10-22</div>
+      <div class="pt">重整结构</div>
+      <div class="row"><span>天数</span><b>12</b></div>
+      <div class="row"><span>发布数</span><b>129</b></div>
+      <div class="row"><span>文件/次（中位）</span><b class="big">27</b></div>
+      <div class="row"><span>模块/次（中位）</span><b class="big">7</b></div>
+    </div>
+    <div class="ph">
+      <div class="pn">P2 · 10-23 → 11-18</div>
+      <div class="pt">稳定高频</div>
+      <div class="row"><span>天数</span><b>27</b></div>
+      <div class="row"><span>发布数</span><b>2,909</b></div>
+      <div class="row"><span>文件/次（中位）</span><b>6</b></div>
+      <div class="row"><span>模块/次（中位）</span><b>2</b></div>
+    </div>
+  </div>
+  <div class="callout">
+    <div class="ico amb">🏗️</div>
+    <div class="tx">12 天只发了 129 个版本，单次却有 <b>27 个文件、7 个模块</b>。
+    之后 27 天发了 <b>2,909</b> 个，日均从 11 涨到 <b>108</b>，单次压到 6 个文件、2 个模块。</div>
+  </div>
+</div>
+
+<!-- ===== CARD 5 ===== -->
+<div class="card" id="c5">
+  <div class="kicker">THE QUIET SIGNAL</div>
+  <h2>改动落在哪些模块</h2>
+  <p class="lead">出现在多少个 release 中（共 3,038 个有 diff 数据的发布）。</p>
+  <svg id="modbars" viewBox="0 0 960 350"></svg>
+  <div class="callout">
+    <div class="ico grn">📄</div>
+    <div class="tx"><b>docs 排第 1</b>，1,519 次，比核心的 <code>internal/gui</code>（1,511）还多。
+    文档不是事后补的：改行为就在<b>同一个提交里</b>改对应子系统文档。<br>
+    这压住了 AI 最大的失败模式——<b>过时的认知被反复当成依据</b>。</div>
+  </div>
+</div>
+
+<!-- ===== CARD 6 ===== -->
+<div class="card" id="c6">
+  <div class="kicker">THE SHAPE</div>
+  <h2>「修遍每个兄弟位置」<br>和「47% 只碰 1~2 个模块」</h2>
+  <p class="lead">它的规范里同时写着这两条。看起来矛盾，其实是配套的。</p>
+  <table>
+    <tr><th>规范原文（docs/code-standards.md）</th><th style="text-align:right">实测</th></tr>
+    <tr><td>A fix reaches every <b>sibling</b> of the bug</td><td class="hi" style="text-align:right">47.0% 只碰 1~2 个模块</td></tr>
+    <tr><td>One commit has <b>one goal</b></td><td class="hi" style="text-align:right">55.2% 只有 1 个提交</td></tr>
+    <tr><td>A change does only what its <b>goal</b> needs</td><td class="hi" style="text-align:right">中位 6 个文件</td></tr>
+    <tr><td>A <b>size budget</b> is met, not raised</td><td class="hi" style="text-align:right">10-23 后稳在 8 个上下</td></tr>
+  </table>
+  <div class="callout">
+    <div class="ico blu">🔒</div>
+    <div class="tx">约束的是<b>每次的改动量</b>，同时禁止<b>只修报告里那一个 case</b>。<br>
+    范围小 ≠ 修得窄。前者防混乱，后者防返工。</div>
+  </div>
+  <div class="foot">
+    <b>数据来源：</b>github.com/yetone/magpie 主仓库全部 3,039 个 release（2026-10-11 → 11-18）；
+    对 3,038 个逐个调用 <code>/compare/prev...tag</code> 取得真实文件清单（v0.1.1194 为首个版本，无前置可比较）。<br>
+    <b>commit 数：</b>main 分支累计 8,625 个（截至 2026-11-18），其中 6,627 个落在这批 release 之间。<br>
+    <b>局限：</b>时间关联不等于因果。10-23 的形态收敛只能给出时间吻合，无法排除混杂因素。
+  </div>
+</div>
+
+</div>
+
+<script>
+const NS="http://www.w3.org/2000/svg";
+const E=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;};
+const DATA={
+days:["10-11","10-12","10-13","10-14","10-15","10-16","10-17","10-18","10-19","10-20","10-21","10-22","10-23","10-24","10-25","10-26","10-27","10-28","10-29","10-30","10-31","11-01","11-02","11-03","11-04","11-05","11-06","11-07","11-08","11-09","11-10","11-11","11-12","11-13","11-14","11-15","11-16","11-17","11-18"],
+rel:[8,15,10,15,19,14,7,5,4,10,13,9,36,96,81,92,120,177,140,164,201,155,106,119,95,77,127,84,57,118,156,145,144,124,115,56,61,61,2],
+files:[50.9,56.7,112.3,80.1,42.1,26.6,73.0,10.4,76.5,40.3,19.0,25.6,11.8,7.4,7.8,9.3,9.7,7.3,7.5,10.4,9.3,12.7,6.8,8.1,8.9,8.5,10.4,7.0,8.6,12.4,21.5,13.3,9.5,9.3,9.2,10.0,7.6,9.9,11.0],
+mods:[6.38,7.20,12.60,10.93,7.21,5.71,8.71,2.80,9.50,7.50,5.15,6.56,3.61,2.34,2.27,2.77,3.08,2.40,2.44,2.61,2.44,3.17,2.42,2.61,2.48,2.73,2.82,2.35,2.32,2.71,4.47,3.23,2.58,2.70,2.89,3.20,2.84,3.16,4.50]};
+const N=DATA.days.length;
+const PIVOT=12; // index of 10-23
+
+function frame(id,opt){
+  const svg=document.getElementById(id);
+  const W=960,H=opt.h||280,m={l:54,r:16,t:16,b:34};
+  const iw=W-m.l-m.r,ih=H-m.t-m.b;
+  svg.setAttribute("viewBox",`0 0 ${W} ${H}`);
+  if(opt.band!==false){
+    svg.appendChild(E("rect",{x:m.l,y:m.t,width:(PIVOT/N)*iw,height:ih,class:"band"}));
+  }
+  const yOf=v=>m.t+ih-(v/opt.ymax)*ih;
+  (opt.ticks||[]).forEach(v=>{
+    const y=yOf(v);
+    svg.appendChild(E("line",{x1:m.l,x2:W-m.r,y1:y,y2:y,class:"gridline"}));
+    const t=E("text",{x:m.l-9,y:y+4,"text-anchor":"end",class:"tick"});
+    t.textContent=opt.fmtY?opt.fmtY(v):v;svg.appendChild(t);
+  });
+  for(let i=0;i<N;i+=5){
+    const t=E("text",{x:m.l+((i+0.5)/N)*iw,y:H-9,"text-anchor":"middle",class:"tick"});
+    t.textContent=DATA.days[i];svg.appendChild(t);
+  }
+  return{svg,m,iw,ih,yOf,W,H,xOf:i=>m.l+((i+0.5)/N)*iw,bw:iw/N};
+}
+
+/* hero bars */
+(function(){
+  const f=frame("hero",{ymax:220,h:260,ticks:[0,50,100,150,200]});
+  const bw=f.bw*0.7;
+  DATA.rel.forEach((v,i)=>{
+    const x=f.xOf(i)-bw/2,y=f.yOf(v);
+    f.svg.appendChild(E("rect",{x,y,width:bw,height:Math.max(f.m.t+f.ih-y,1),rx:2,
+      fill:i<PIVOT?"#fbbf24":"#93c5fd"}));
+  });
+  const pi=DATA.rel.indexOf(201);
+  const t=E("text",{x:f.xOf(pi),y:f.yOf(201)-8,"text-anchor":"middle",class:"lbl"});
+  t.textContent="201";f.svg.appendChild(t);
+  const bl=E("text",{x:f.m.l+(PIVOT/N)*f.iw/2,y:f.m.t+18,"text-anchor":"middle",class:"lbl"});
+  bl.textContent="每天 4~19 个";bl.style.fill="#b45309";bl.style.fontSize="12px";
+  f.svg.appendChild(bl);
+})();
+
+/* files log */
+(function(){
+  const MAX=200,lg=Math.log10(MAX);
+  const f=frame("files",{ymax:lg,h:300,band:false,ticks:[0,1,2],fmtY:v=>Math.round(Math.pow(10,v))});
+  const yl=v=>f.m.t+f.ih-(Math.log10(Math.max(v,1))/lg)*f.ih;
+  let d="";
+  DATA.files.forEach((v,i)=>{d+=(i?"L":"M")+f.xOf(i)+","+yl(v);});
+  f.svg.appendChild(E("path",{d:d+`L${f.xOf(N-1)},${f.m.t+f.ih}L${f.xOf(0)},${f.m.t+f.ih}Z`,
+    fill:"#fee2e2",opacity:.5}));
+  f.svg.appendChild(E("path",{d,fill:"none",stroke:"#ef4444","stroke-width":2.8,"stroke-linejoin":"round"}));
+  DATA.files.forEach((v,i)=>f.svg.appendChild(E("circle",{cx:f.xOf(i),cy:yl(v),r:2.6,fill:"#ef4444"})));
+  const pi=DATA.files.indexOf(112.3);
+  f.svg.appendChild(E("circle",{cx:f.xOf(pi),cy:yl(112.3),r:6,fill:"#fff",stroke:"#ef4444","stroke-width":2.5}));
+  const t=E("text",{x:f.xOf(pi),y:yl(112.3)-14,"text-anchor":"middle",class:"lbl"});
+  t.textContent="112";f.svg.appendChild(t);
+  const xm=f.xOf(PIVOT);
+  f.svg.appendChild(E("line",{x1:xm,x2:xm,y1:f.m.t,y2:f.m.t+f.ih,stroke:"#0f172a",
+    "stroke-width":1.5,"stroke-dasharray":"4 4",opacity:.45}));
+  const mt=E("text",{x:xm+8,y:f.m.t+16,class:"lbl"});
+  mt.textContent="10-23 起 8 个上下";mt.style.fontSize="12.5px";f.svg.appendChild(mt);
+})();
+
+/* mods */
+(function(){
+  const f=frame("mods",{ymax:14,h:290,band:false,ticks:[0,4,8,12]});
+  let d="";
+  DATA.mods.forEach((v,i)=>{d+=(i?"L":"M")+f.xOf(i)+","+f.yOf(v);});
+  f.svg.appendChild(E("path",{d:d+`L${f.xOf(N-1)},${f.m.t+f.ih}L${f.xOf(0)},${f.m.t+f.ih}Z`,
+    fill:"#ede9fe",opacity:.9}));
+  f.svg.appendChild(E("path",{d,fill:"none",stroke:"#8b5cf6","stroke-width":2.8,"stroke-linejoin":"round"}));
+  DATA.mods.forEach((v,i)=>f.svg.appendChild(E("circle",{cx:f.xOf(i),cy:f.yOf(v),r:2.6,fill:"#8b5cf6"})));
+  const pi=DATA.mods.indexOf(12.6);
+  const t=E("text",{x:f.xOf(pi),y:f.yOf(12.6)-12,"text-anchor":"middle",class:"lbl"});
+  t.textContent="12.6";f.svg.appendChild(t);
+})();
+
+/* module bars */
+(function(){
+  const svg=document.getElementById("modbars");
+  const W=960,H=350,m={l:170,r:64,t:8,b:8},iw=W-m.l-m.r;
+  const rows=[["docs",1519],["internal/gui",1511],["internal/gateway",1145],
+    ["internal/provider",976],["internal/agent",514],["internal/cli",367],
+    ["site",359],["internal/sessions",268],["internal/usage",247],["internal/library",244]];
+  const ymax=1519,rh=(H-m.t-m.b)/rows.length;
+  rows.forEach(([n,v],i)=>{
+    const y=m.t+i*rh+rh*0.16,h=rh*0.66,w=(v/ymax)*iw;
+    const isDoc=n==="docs";
+    svg.appendChild(E("rect",{x:m.l,y,width:w,height:h,rx:3,fill:isDoc?"#34d399":"#bfdbfe"}));
+    const ln=E("text",{x:m.l-12,y:y+h/2+5,"text-anchor":"end",class:"tick"});
+    ln.textContent=n;ln.style.fontSize="14.5px";ln.style.fill=isDoc?"#059669":"#475569";
+    if(isDoc)ln.style.fontWeight="750";svg.appendChild(ln);
+    const vn=E("text",{x:m.l+w+10,y:y+h/2+5,class:"tick"});
+    vn.textContent=v.toLocaleString();vn.style.fontSize="13.5px";
+    vn.style.fill=isDoc?"#059669":"#64748b";
+    if(isDoc)vn.style.fontWeight="750";svg.appendChild(vn);
+  });
+})();
+</script>
+</body>
+</html>
