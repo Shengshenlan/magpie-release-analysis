@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased; color: #0f172a; background: #fff;
+  }
+  .shot { width: 1080px; background: #fff; padding: 64px 64px 52px; }
+
+  .kicker { font-size: 13px; font-weight: 700; letter-spacing: .13em; color: #94a3b8; }
+  h1 { margin-top: 16px; font-size: 46px; line-height: 1.2; font-weight: 760; letter-spacing: -.03em; }
+  .sub { margin-top: 14px; font-size: 16px; line-height: 1.6; color: #64748b; }
+  .sub b { color: #0f172a; font-weight: 650; }
+
+  .row { margin-top: 40px; padding-top: 30px; border-top: 1px solid #eef2f6; }
+  .row:first-of-type { border-top: none; }
+
+  .rh { display: flex; align-items: flex-end; justify-content: space-between; }
+  .rl { display: flex; align-items: baseline; gap: 14px; }
+  .idx { font-size: 13px; font-weight: 750; color: #cbd5e1; letter-spacing: .06em; }
+  .name { font-size: 23px; font-weight: 700; letter-spacing: -.015em; }
+  .stat { text-align: right; }
+  .stat .v { font-size: 34px; font-weight: 770; letter-spacing: -.03em; line-height: 1; }
+  .stat .u { font-size: 13px; color: #94a3b8; margin-top: 5px; }
+
+  svg { display: block; overflow: visible; }
+  .tick { font-size: 12.5px; fill: #a2acb9; font-variant-numeric: tabular-nums; }
+  .bin { font-size: 12.5px; fill: #8b95a3; }
+
+  .an { margin-top: 14px; font-size: 15px; line-height: 1.7; color: #55606e; }
+  .an b { color: #0f172a; font-weight: 680; }
+
+  .foot { margin-top: 40px; padding-top: 18px; border-top: 1px solid #eef2f6;
+          font-size: 13px; line-height: 1.7; color: #b6bdc8; }
+  .foot b { color: #94a3b8; }
+</style>
+</head>
+<body>
+<div class="shot" id="shot">
+
+  <div class="kicker">MAGPIE · 4,158 RELEASES · 56 天</div>
+  <h1>五个尺度的改动大小</h1>
+  <div class="sub">
+    从「每天发多少」一路缩到「一次 commit 动多少」。<b>尺度越小，波动越小</b>——节奏可以起伏，单次改动的边界却很稳定。<br>
+    <span style="font-size:14px;color:#94a3b8">彩色柱 = 中位数所在的区间，右上角大数字即该区间的代表值。</span>
+  </div>
+
+  <!-- 1 每天 release -->
+  <div class="row">
+    <div class="rh">
+      <div class="rl"><span class="idx">01</span><span class="name">每天 release 数</span></div>
+      <div class="stat"><div class="v">72</div><div class="u">个/天（中位）</div></div>
+    </div>
+    <svg id="c1" width="952" height="104"></svg>
+    <div class="an">
+      56 天里中位 <b>72 个/天</b>，最高 201、最低 3。<br>
+      中间有 17 天掉到 10 来个，之后又回到每天上百——节奏波动很大。
+    </div>
+  </div>
+
+  <!-- 2 每次 release 文件数 -->
+  <div class="row">
+    <div class="rh">
+      <div class="rl"><span class="idx">02</span><span class="name">每次 release 修改的文件数</span></div>
+      <div class="stat"><div class="v">6</div><div class="u">个（中位）· 均值 11.3</div></div>
+    </div>
+    <svg id="c2" width="952" height="104"></svg>
+    <div class="an">
+      中位 <b>6 个文件</b>，均值却是 11.3——少数大改动把均值拉高了近一倍。<br>
+      10 月 13 日平均到 <b>87 个</b>，是稳态的十倍。
+    </div>
+  </div>
+
+  <!-- 3 每次 release 模块数 -->
+  <div class="row">
+    <div class="rh">
+      <div class="rl"><span class="idx">03</span><span class="name">每次 release 修改的模块数</span></div>
+      <div class="stat"><div class="v">2</div><div class="u">个（中位）· 均值 2.95</div></div>
+    </div>
+    <svg id="c3" width="952" height="104"></svg>
+    <div class="an">
+      中位 <b>2 个模块</b>，<b>55%</b> 的发布只碰 1~2 个模块。<br>
+      绝大多数发布是定点修补，不是跨包重构。
+    </div>
+  </div>
+
+  <!-- 4 每个 commit 文件数 -->
+  <div class="row">
+    <div class="rh">
+      <div class="rl"><span class="idx">04</span><span class="name">每个 commit 修改的文件数</span></div>
+      <div class="stat"><div class="v">5</div><div class="u">个（中位）· 仅单 commit 发布</div></div>
+    </div>
+    <svg id="c4" width="952" height="104"></svg>
+    <div class="an">
+     <b>68%</b> 的发布本来就只有 1 个 commit，所以这批数据可以直接量，不用估算。<br>
+      在这 <b>2,836</b> 个发布里，中间值 5 个文件、均值 6.8。
+    </div>
+  </div>
+
+  <!-- 5 每个 commit 模块数 -->
+  <div class="row">
+    <div class="rh">
+      <div class="rl"><span class="idx">05</span><span class="name">每个 commit 修改的模块数</span></div>
+      <div class="stat"><div class="v">2</div><div class="u">个（中位）· 均值 2.27</div></div>
+    </div>
+    <svg id="c5" width="952" height="104"></svg>
+    <div class="an">
+      同样这 2,836 个发布，中位动 <b>2 个模块</b>，<b>41%</b> 只动一个。<br>
+      一次 commit 的改动边界很硬，很少溢出到第三个包。
+    </div>
+  </div>
+
+  <div class="foot">
+    <b>数据：</b>magpie-releases 全部 4,162 个 release；对 4,158 个调 magpie 仓库 compare 接口取真实文件清单（4 个无共同祖先已剔除）。<br>
+    <b>口径：</b>「模块」= internal/ 下一级子包，加 docs / site / plugins 等顶层目录。第 04、05 项受 compare 接口限制只能逐 commit 统计，故限定在单 commit 发布内，为精确值。
+  </div>
+</div>
+
+<script>
+const NS = "http://www.w3.org/2000/svg";
+const E = (t, a) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); return e; };
+
+/* ---------- 01 每日发布柱状 ---------- */
+const REL = [3,41,48,60,67,120,83,115,62,78,104,127,140,24,10,21,21,27,26,15,8,15,19,14,7,5,4,11,13,9,36,96,81,92,121,178,140,164,201,155,106,119,95,77,128,84,57,118,157,146,144,124,116,56,61,9];
+(function () {
+  const svg = document.getElementById("c1");
+  const W = 952, H = 96, mt = 8, mb = 4;
+  const N = REL.length, iw = W, ih = H - mt - mb, bw = iw / N, ymax = 210;
+  REL.forEach((v, i) => {
+    const h = Math.max((v / ymax) * ih, 1.5);
+    svg.appendChild(E("rect", {
+      x: i * bw + bw * 0.15, y: mt + ih - h, width: bw * 0.7, height: h,
+      rx: 1.2, fill: (i >= 13 && i <= 30) ? "#f0b429" : "#a8c8f0"
+    }));
+  });
+  // 中位线
+  const my = mt + ih - (72 / ymax) * ih;
+  svg.appendChild(E("line", { x1: 0, x2: iw, y1: my, y2: my, stroke: "#0f172a", "stroke-width": 1.2, "stroke-dasharray": "5 4", opacity: .45 }));
+  const t = E("text", { x: 2, y: my - 6, "text-anchor": "start", class: "tick" });
+  t.textContent = "中位 72"; t.style.fill = "#0f172a"; t.style.fontWeight = "700"; svg.appendChild(t);
+})();
+
+/* ---------- 直方图通用 ---------- */
+function hist(id, counts, labels, color, markIdx) {
+  const svg = document.getElementById(id);
+  const W = 952, H = 104, mt = 18, mb = 22;
+  const iw = W, ih = H - mt - mb;
+  const ymax = Math.max(...counts);
+  const bw = iw / counts.length;
+
+  // 基线
+  svg.appendChild(E("line", { x1: 0, x2: iw, y1: mt + ih, y2: mt + ih, stroke: "#eef2f6", "stroke-width": 1 }));
+
+  counts.forEach((v, i) => {
+    const h = Math.max((v / ymax) * ih, 2);
+    const isMark = i === markIdx;
+    svg.appendChild(E("rect", {
+      x: i * bw + bw * 0.18, y: mt + ih - h, width: bw * 0.64, height: h,
+      rx: 2, fill: isMark ? color : color + "4d"
+    }));
+    const t = E("text", { x: i * bw + bw / 2, y: H - 6, "text-anchor": "middle", class: "bin" });
+    t.textContent = labels[i];
+    if (isMark) { t.style.fill = color; t.style.fontWeight = "700"; }
+    svg.appendChild(t);
+  });
+
+  // 最高柱标数量
+  const mi = counts.indexOf(ymax);
+  const ct = E("text", {
+    x: mi * bw + bw / 2, y: mt + ih - (ymax / ymax) * ih - 5,
+    "text-anchor": "middle", class: "bin"
+  });
+  ct.textContent = ymax.toLocaleString();
+  ct.style.fill = "#64748b"; ct.style.fontWeight = "700";
+  svg.appendChild(ct);
+}
+
+/* 02 每次 release 文件数: 1-2, 3-5, 6-10, 11-20, 21-40, 41+ */
+hist("c2", [654, 1143, 1071, 780, 343, 167],
+     ["1–2", "3–5", "6–10", "11–20", "21–40", "41+"], "#e05252", 2);
+
+/* 03 每次 release 模块数: 1,2,3,4-5,6-8,9+ */
+hist("c3", [1281, 1021, 675, 703, 329, 149],
+     ["1", "2", "3", "4–5", "6–8", "9+"], "#8b5cf6", 1);
+
+/* 04 每个 commit 文件数（单commit发布）: 1-2,3-4,5-8,9-15,16-30,31+ */
+hist("c4", [632, 737, 768, 478, 194, 27],
+     ["1–2", "3–4", "5–8", "9–15", "16–30", "31+"], "#e08a2e", 2);
+
+/* 05 每个 commit 模块数（单commit发布）: 1,2,3,4,5,6+ */
+hist("c5", [1174, 760, 401, 245, 121, 135],
+     ["1", "2", "3", "4", "5", "6+"], "#2fa86b", 1);
+</script>
+</body>
+</html>

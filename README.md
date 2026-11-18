@@ -18,7 +18,10 @@ magpie 自述「code is written, reviewed, merged and released by agents」—�
 | ![三阶段](images/02-three-phases.png) | ![模块](images/03-modules.png) |
 | 三阶段形态对比 | 改动落在哪些模块 |
 
-第五张在 [`images/04-change-size.png`](images/04-change-size.png)：改动规模分布。
+另外两张：
+
+- [`images/04-change-size.png`](images/04-change-size.png) —— 改动规模分布
+- [`images/05-five-scales.png`](images/05-five-scales.png) —— **五个尺度的改动大小**（每天 release 数 / 每次 release 的文件与模块 / 每个 commit 的文件与模块）
 
 ## 结论
 
@@ -56,7 +59,7 @@ magpie 自述「code is written, reviewed, merged and released by agents」—�
 ## 目录
 
 ```
-├── images/              5 张成品图（2160px 宽，2 倍图）
+├── images/              6 张成品图（2160px 宽，2 倍图）
 ├── out/                 分析结果
 │   ├── summary.json       关键数字 + 每日序列 + 三阶段（画图读这个就够）
 │   ├── daily.csv          每天一行
