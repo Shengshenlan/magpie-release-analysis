@@ -1,0 +1,21 @@
+README.md
+  s_d7951b276103ee::t_0e1744cd0ac142 21-24,62
+scripts/five-scales.html
+  s_d7951b276103ee::t_a67f9068f868af 1-198
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "14c024fa9a30c2d8819593eba8c4b3120f0b570b",
+  "prompts": {},
+  "sessions": {
+    "s_d7951b276103ee": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a1e79d-a501-7537-953c-345fc8bb55a1",
+        "model": "deepseek-v4.1-flash"
+      },
+      "human_author": "Lan Zhu <zhulan@changtianyun.com>"
+    }
+  }
+}
