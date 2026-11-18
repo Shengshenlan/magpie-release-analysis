@@ -11,44 +11,23 @@
     "last": "2026-11-18"
   },
   "overall": {
-    "total_commits": 6627,
-    "median_files": 6.0,
-    "mean_files": 11.76,
+    "total_commits": 6981,
+    "median_files": 7.0,
+    "mean_files": 12.43,
     "median_modules": 2.0,
-    "mean_modules": 2.99,
-    "single_commit_pct": 55.2,
-    "one_two_modules_pct": 47.0,
-    "within_five_pct": 79.3
+    "mean_modules": 3.2,
+    "single_commit_pct": 61.0,
+    "one_two_modules_pct": 51.3,
+    "within_five_pct": 86.6
   },
   "module_distribution": {
-    "6-8": {
-      "count": 51,
-      "pct": 1.7
-    },
-    "1": {
-      "count": 728,
-      "pct": 24.0
-    },
-    "2": {
-      "count": 699,
-      "pct": 23.0
-    },
-    "3": {
-      "count": 465,
-      "pct": 15.3
-    },
-    "4": {
-      "count": 326,
-      "pct": 10.7
-    },
-    "5": {
-      "count": 192,
-      "pct": 6.3
-    },
-    "9+": {
-      "count": 134,
-      "pct": 4.4
-    }
+    "6-8": 54,
+    "1": 794,
+    "2": 763,
+    "3": 514,
+    "4": 350,
+    "5": 209,
+    "9+": 135
   },
   "daily": {
     "days": [
@@ -138,7 +117,7 @@
       56.7,
       112.3,
       80.1,
-      42.1,
+      43,
       26.6,
       73,
       10.4,
@@ -146,32 +125,32 @@
       40.3,
       19,
       25.6,
-      11.8,
-      7.4,
+      12.6,
       7.8,
-      9.3,
-      9.7,
-      7.3,
-      7.5,
-      10.4,
-      9.3,
-      12.7,
-      6.8,
       8.1,
-      8.9,
-      8.5,
-      10.4,
-      7.0,
+      10.3,
+      10.8,
+      7.6,
+      8.0,
+      10.6,
+      10.3,
+      13.4,
+      7.1,
       8.6,
-      12.4,
-      21.5,
-      13.3,
-      9.5,
-      9.3,
-      9.2,
+      9.4,
+      8.8,
+      11.9,
+      7.2,
+      8.8,
+      13.0,
+      23.9,
+      14.5,
+      10.1,
+      9.7,
+      9.6,
       10.0,
       7.6,
-      9.9,
+      10.3,
       11
     ],
     "avg_modules": [
@@ -179,7 +158,7 @@
       7.2,
       12.6,
       10.93,
-      7.21,
+      7.53,
       5.71,
       8.71,
       2.8,
@@ -187,123 +166,95 @@
       7.5,
       5.15,
       6.56,
-      3.61,
-      2.34,
-      2.27,
-      2.77,
-      3.08,
-      2.4,
-      2.44,
-      2.61,
-      2.44,
-      3.17,
+      3.97,
+      2.49,
       2.42,
-      2.61,
-      2.48,
-      2.73,
-      2.82,
-      2.35,
-      2.32,
+      3.13,
+      3.5,
+      2.5,
+      2.56,
       2.71,
-      4.47,
-      3.23,
-      2.58,
-      2.7,
-      2.89,
-      3.2,
+      2.65,
+      3.4,
+      2.55,
+      2.76,
+      2.67,
       2.84,
-      3.16,
+      3.35,
+      2.44,
+      2.37,
+      2.79,
+      5.27,
+      3.5,
+      2.76,
+      2.85,
+      2.98,
+      3.2,
+      2.85,
+      3.34,
       4.5
     ]
   },
   "top_modules": [
     {
       "module": "docs",
-      "count": 1519
+      "count": 1645
     },
     {
       "module": "internal/gui",
-      "count": 1511
+      "count": 1622
     },
     {
       "module": "internal/gateway",
-      "count": 1145
+      "count": 1231
     },
     {
       "module": "internal/provider",
-      "count": 976
+      "count": 1053
     },
     {
       "module": "internal/agent",
-      "count": 514
+      "count": 546
     },
     {
       "module": "internal/cli",
-      "count": 367
+      "count": 396
     },
     {
       "module": "site",
-      "count": 359
+      "count": 392
     },
     {
       "module": "internal/sessions",
-      "count": 268
+      "count": 279
     },
     {
       "module": "internal/usage",
-      "count": 247
+      "count": 263
     },
     {
       "module": "internal/library",
-      "count": 244
+      "count": 259
     },
     {
       "module": "(root)",
-      "count": 240
+      "count": 259
     },
     {
       "module": "internal/plugin",
-      "count": 191
+      "count": 197
     },
     {
       "module": "internal/settings",
-      "count": 164
+      "count": 171
     },
     {
       "module": "internal/catalog",
-      "count": 110
+      "count": 116
     },
     {
       "module": "internal/redact",
-      "count": 96
+      "count": 100
     }
-  ],
-  "phases": {
-    "P1_restructure": {
-      "range": "2026-10-11 ~ 10-22",
-      "days": 12,
-      "n": 129,
-      "files_median": 27,
-      "mods_median": 7,
-      "files_mean": 50.42,
-      "mods_mean": 7.6,
-      "daily_mean": 10.8
-    },
-    "P2_stable": {
-      "range": "2026-10-23 ~ 11-18",
-      "days": 27,
-      "n": 2909,
-      "files_median": 6,
-      "mods_median": 2,
-      "files_mean": 10.05,
-      "mods_mean": 2.79,
-      "daily_mean": 107.7
-    }
-  },
-  "commits": {
-    "main_branch_total": 8625,
-    "within_releases": 6627,
-    "as_of": "2026-11-18",
-    "note": "main 分支全部提交 8,625；其中 6,627 落在这 3,038 个 release 的相邻 compare 之间，差额来自首个 release 之前的历史。"
-  }
+  ]
 }

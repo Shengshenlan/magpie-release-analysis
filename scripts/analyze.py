@@ -24,7 +24,8 @@ def module_of(path):
 def load():
     rows = [l.rstrip("\n").split("\t") for l in open(f"{SRC}/all.tsv")]
     rows = [r for r in rows if len(r) >= 2 and r[0].startswith("v0.1.")]
-    rows.sort(key=lambda r: r[1])
+    # 按版本号数字排序；同秒发布时按时间排序不稳定
+    rows.sort(key=lambda r: int(r[0].split(".")[-1]))
     tags = [(r[0], r[1]) for r in rows]
     diffs = {}
     for f in glob.glob(f"{SRC}/diffs/*.json"):
